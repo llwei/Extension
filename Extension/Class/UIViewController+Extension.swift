@@ -34,7 +34,7 @@ extension UIViewController {
 
 class TransitionOperation: NSObject, UIViewControllerTransitioningDelegate {
     
-    typealias FetchPresentationControllerHandle = ((_ presented: UIViewController, _ presenting: UIViewController?) -> UIPresentationController)
+    typealias FetchPresentationControllerHandle = ((_ presented: UIViewController, _ presenting: UIViewController?) -> UIPresentationController?)
     
     private var presentedTransitioning: UIViewControllerAnimatedTransitioning?
     private var dismissedTransitioning: UIViewControllerAnimatedTransitioning?
