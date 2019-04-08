@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         paragraphStyle.alignment = .left
         paragraphStyle.lineSpacing = 3
         alert.titleAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red,
-                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]
+                                 NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]
         alert.messageAttributes = [NSAttributedString.Key.foregroundColor : UIColor.lightGray,
                                    NSAttributedString.Key.paragraphStyle : paragraphStyle]
         cancel.titleColor = UIColor.red

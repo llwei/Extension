@@ -23,6 +23,31 @@ extension UIImage {
         return image
     }
     
+    
+    
+    /// 设置渐变颜色背景图层
+    class func colors(colors: [UIColor],
+                      size: CGSize,
+                      starPoint: CGPoint = CGPoint(x: 0, y: 0.5),
+                      endPoint: CGPoint = CGPoint(x: 1 , y: 0.5),
+                      locations: [NSNumber]? = nil) -> UIImage? {
+        
+        UIGraphicsBeginImageContext(size)
+        guard let context = UIGraphicsGetCurrentContext() else {
+            return nil
+        }
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = CGRect(origin: CGPoint.zero, size: size)
+        gradientLayer.startPoint = starPoint
+        gradientLayer.endPoint = endPoint
+        gradientLayer.locations = locations
+        gradientLayer.colors = colors.map({$0.cgColor})
+        gradientLayer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
 }
 
 
