@@ -102,59 +102,52 @@ extension UIButton {
     
     /// 图文结构
     var structMode: StructMode? {
-        get {
-            return objc_getAssociatedObject(self,
-                                            &AssociatedKeys.structModeKey) as? StructMode
-        }
-        set {
-            objc_setAssociatedObject(self,
-                                     &AssociatedKeys.structModeKey,
-                                     newValue,
-                                     .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-           
-            guard let mode = newValue else { return }
-            switch mode {
-            case .leftTextRightImage:
-                titleEdgeInsets = UIEdgeInsets(top: 0,
-                                               left: -((imageView?.frame.width ?? 0) + mode.interval / 2.0),
-                                               bottom: 0,
-                                               right: (imageView?.frame.width ?? 0) + mode.interval / 2.0)
-                
-                imageEdgeInsets = UIEdgeInsets(top: 0,
-                                               left: (titleLabel?.frame.width ?? 0) + mode.interval / 2.0,
-                                               bottom: 0,
-                                               right: -((titleLabel?.frame.width ?? 0) + mode.interval / 2.0))
-                
-            case .leftImageRightText:
-                titleEdgeInsets = UIEdgeInsets(top: 0,
-                                               left: mode.interval,
-                                               bottom: 0,
-                                               right: 0)
-                imageEdgeInsets = UIEdgeInsets(top: 0,
-                                               left: -mode.interval,
-                                               bottom: 0,
-                                               right: 0)
-                
-            case .topTextBottomImage:
-                titleEdgeInsets = UIEdgeInsets(top: -((imageView?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               left: -(imageView?.frame.width ?? 0) / 2.0,
-                                               bottom: ((imageView?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               right: (imageView?.frame.width ?? 0) / 2.0)
-                imageEdgeInsets = UIEdgeInsets(top: ((titleLabel?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               left: (titleLabel?.frame.width ?? 0) / 2.0,
-                                               bottom: -((titleLabel?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               right: -(titleLabel?.frame.width ?? 0) / 2.0)
-                
-            case .topImageBottomText:
-                titleEdgeInsets = UIEdgeInsets(top: ((imageView?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               left: -(imageView?.frame.width ?? 0) / 2.0,
-                                               bottom: -((imageView?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               right: (imageView?.frame.width ?? 0) / 2.0)
-                imageEdgeInsets = UIEdgeInsets(top: -((titleLabel?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               left: (titleLabel?.frame.width ?? 0) / 2.0,
-                                               bottom: ((titleLabel?.frame.height ?? 0) + mode.interval) / 2.0,
-                                               right: -(titleLabel?.frame.width ?? 0) / 2.0)
-            }
+        guard let title = currentTitle, let titleLabel = self.titleLabel else { return }
+        let titleSize = title.size(withAttributes: [NSAttributedStringKey.font: titleLabel.font])
+        
+        switch StructMode(rawValue: structMode) ?? .leftImageRightText {
+        case .leftImageRightText:
+            titleEdgeInsets = UIEdgeInsets(top: 0,
+                                           left: structInterval,
+                                           bottom: 0,
+                                           right: 0)
+            imageEdgeInsets = UIEdgeInsets(top: 0,
+                                           left: -structInterval,
+                                           bottom: 0,
+                                           right: 0)
+            
+        case .leftTextRightImage:
+            titleEdgeInsets = UIEdgeInsets(top: 0,
+                                           left: -((imageView?.frame.width ?? 0) + structInterval / 2.0),
+                                           bottom: 0,
+                                           right: (imageView?.frame.width ?? 0) + structInterval / 2.0)
+            
+            imageEdgeInsets = UIEdgeInsets(top: 0,
+                                           left: titleSize.width + structInterval / 2.0,
+                                           bottom: 0,
+                                           right: -(titleSize.width + structInterval / 2.0))
+            
+            
+            
+        case .topTextBottomImage:
+            titleEdgeInsets = UIEdgeInsets(top: -((imageView?.frame.height ?? 0) + structInterval) / 2.0,
+                                           left: -(imageView?.frame.width ?? 0),
+                                           bottom: ((imageView?.frame.height ?? 0) + structInterval) / 2.0,
+                                           right: 0)
+            imageEdgeInsets = UIEdgeInsets(top: (titleSize.height + structInterval) / 2.0,
+                                           left: 0,
+                                           bottom: -(titleSize.height + structInterval) / 2.0,
+                                           right: -titleSize.width)
+            
+        case .topImageBottomText:
+            titleEdgeInsets = UIEdgeInsets(top: ((imageView?.frame.height ?? 0) + structInterval) / 2.0,
+                                           left: -(imageView?.frame.width ?? 0),
+                                           bottom: -((imageView?.frame.height ?? 0) + structInterval) / 2.0,
+                                           right: 0)
+            imageEdgeInsets = UIEdgeInsets(top: -(titleSize.height + structInterval) / 2.0,
+                                           left: 0,
+                                           bottom: (titleSize.height + structInterval) / 2.0,
+                                           right: -titleSize.width)
         }
     }
     
