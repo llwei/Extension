@@ -17,6 +17,7 @@ extension UIButton {
         static var selectedBgColorKey = "UIButton.selectedBgColorKey"
         
         static var structModeKey = "UIButton.structModeKey"
+        static var structIntervalKey = "UIButton.structIntervalKey"
     }
     
     /// normal状态背景图片
@@ -83,27 +84,46 @@ extension UIButton {
 
 extension UIButton {
     
-    enum StructMode {
-        case leftTextRightImage(interval: CGFloat)
-        case leftImageRightText(interval: CGFloat)
-        case topTextBottomImage(interval: CGFloat)
-        case topImageBottomText(interval: CGFloat)
-        
-        var interval: CGFloat {
-            switch self {
-            case let .leftTextRightImage(interval),
-                 let .leftImageRightText(interval),
-                 let .topTextBottomImage(interval),
-                 let .topImageBottomText(interval):
-                return interval
-            }
-        }
+    enum StructMode: Int {
+        case leftImageRightText = 0
+        case leftTextRightImage = 1
+        case topTextBottomImage = 2
+        case topImageBottomText = 3
     }
     
     /// 图文结构
-    var structMode: StructMode? {
+    @IBInspectable var structMode: Int {
+        get {
+            return objc_getAssociatedObject(self,
+                                            &AssociatedKeys.structModeKey) as? Int ?? 0
+        }
+        set {
+            objc_setAssociatedObject(self,
+                                     &AssociatedKeys.structModeKey,
+                                     newValue,
+                                     .OBJC_ASSOCIATION_ASSIGN)
+            layoutStruct()
+        }
+    }
+    
+    /// 空隙
+    @IBInspectable var structInterval: CGFloat {
+        get {
+            return objc_getAssociatedObject(self,
+                                            &AssociatedKeys.structIntervalKey) as? CGFloat ?? 0.0
+        }
+        set {
+            objc_setAssociatedObject(self,
+                                     &AssociatedKeys.structIntervalKey,
+                                     newValue,
+                                     .OBJC_ASSOCIATION_ASSIGN)
+            layoutStruct()
+        }
+    }
+    
+    func layoutStruct() {
         guard let title = currentTitle, let titleLabel = self.titleLabel else { return }
-        let titleSize = title.size(withAttributes: [NSAttributedStringKey.font: titleLabel.font])
+        let titleSize = title.size(withAttributes: [NSAttributedString.Key.font: titleLabel.font])
         
         switch StructMode(rawValue: structMode) ?? .leftImageRightText {
         case .leftImageRightText:
