@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		942C51D821C0B3F400AADA9A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C51D721C0B3F400AADA9A /* Date+Extension.swift */; };
+		9460F76E232F41210054A3C8 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9460F76D232F41210054A3C8 /* UIDevice+Extension.swift */; };
 		947ADE6C21BE6E0D001B2CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947ADE6B21BE6E0D001B2CFC /* AppDelegate.swift */; };
 		947ADE6E21BE6E0D001B2CFC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947ADE6D21BE6E0D001B2CFC /* ViewController.swift */; };
 		947ADE7121BE6E0D001B2CFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 947ADE6F21BE6E0D001B2CFC /* Main.storyboard */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		942C51D721C0B3F400AADA9A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		9460F76D232F41210054A3C8 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		947ADE6821BE6E0D001B2CFC /* Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Extension.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		947ADE6B21BE6E0D001B2CFC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		947ADE6D21BE6E0D001B2CFC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				947ADE8521BE6F8D001B2CFC /* UITextField+Extension.swift */,
 				947ADE7F21BE6F8C001B2CFC /* UIView+Extension.swift */,
 				947F120521BF88BB00266C92 /* UIColor+Extension.swift */,
+				9460F76D232F41210054A3C8 /* UIDevice+Extension.swift */,
 				947ADE8121BE6F8C001B2CFC /* UIViewController+Extension.swift */,
 				947F120721BF8D7600266C92 /* String+Extension.swift */,
 				947F120921BF93DA00266C92 /* Data+Extension.swift */,
@@ -192,6 +195,7 @@
 				947ADE8721BE6F8D001B2CFC /* UIView+Extension.swift in Sources */,
 				942C51D821C0B3F400AADA9A /* Date+Extension.swift in Sources */,
 				947ADE8621BE6F8D001B2CFC /* UIButton+Extension.swift in Sources */,
+				9460F76E232F41210054A3C8 /* UIDevice+Extension.swift in Sources */,
 				947ADE8A21BE6F8D001B2CFC /* NSObject+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
