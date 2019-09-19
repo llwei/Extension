@@ -48,6 +48,14 @@ extension UIImage {
         return image
     }
     
+    /// 图片转字符串
+    func toAttributeString() -> NSAttributedString {
+        let textAttachment = NSTextAttachment()
+        textAttachment.image = self
+        textAttachment.bounds = CGRect(x: 0, y: -2, width: self.size.width, height: self.size.height)
+        return NSAttributedString(attachment: textAttachment)
+    }
+    
 }
 
 

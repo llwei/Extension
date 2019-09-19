@@ -171,7 +171,7 @@ extension String {
     
     /// 某字符在字符串中的第一个下标索引
     func firstIndex(of string: String) -> Int? {
-        return map({ String($0) }).index(of: string)
+        return map({ String($0) }).firstIndex(of: string)
     }
     
     /// 根据换行符\n把字符串分段为数组元素
@@ -227,6 +227,27 @@ extension String {
             string += "\(base[base.index(base.startIndex, offsetBy: IndexDistance(randomIndex))])"
         }
         return string
+    }
+    
+    /// 截取前index
+    func substring(to index: Int) -> String {
+        if self.count > index {
+            let theIndex = self.index(self.startIndex, offsetBy:index)
+            return String(self[..<theIndex])//"\(self.substring(to: theIndex))..."
+        }
+        return self
+    }
+    
+    /// 从index后截取
+    func substring(from index: Int) -> String {
+        if self.count > index {
+            let startIndex = self.index(self.startIndex, offsetBy: index)
+            let subString = self[startIndex..<self.endIndex]
+            
+            return String(subString)
+        } else {
+            return self
+        }
     }
     
 }

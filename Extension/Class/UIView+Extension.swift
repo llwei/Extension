@@ -115,3 +115,28 @@ extension UIView {
     
 }
 
+extension UIView {
+    
+    func scaleShake() {
+        layer.removeAnimation(forKey: "scaleShake")
+        let anim = CAKeyframeAnimation(keyPath: "transform.scale")
+        anim.values = [0.98, 1.1, 1.0, 0.98]
+        anim.duration = 1.0
+        anim.repeatCount = MAXFLOAT
+        anim.isRemovedOnCompletion = false
+        layer.add(anim, forKey: "scaleShake")
+    }
+    
+    func angleShake() {
+        layer.removeAnimation(forKey: "angleShake")
+        layer.anchorPoint = CGPoint(x: 0.0, y: 1.0)
+        let anim = CAKeyframeAnimation(keyPath: "transform.rotation.z")
+        anim.values = [Double.pi / 15, 0.0, -Double.pi / 15, 0.0, Double.pi / 15]
+        anim.duration = 1.2
+        anim.repeatCount = MAXFLOAT
+        anim.isRemovedOnCompletion = false
+        layer.add(anim, forKey: "angleShake")
+    }
+    
+}
+

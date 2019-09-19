@@ -6,8 +6,7 @@
 //  Copyright © 2019 Laiai. All rights reserved.
 //
 
-import Foundation
-
+import UIKit
 
 extension UIDevice {
     
