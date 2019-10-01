@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000D7D5F2343C6300016E3E8 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000D7D5E2343C6300016E3E8 /* Int+Extension.swift */; };
 		942C51D821C0B3F400AADA9A /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942C51D721C0B3F400AADA9A /* Date+Extension.swift */; };
 		9460F76E232F41210054A3C8 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9460F76D232F41210054A3C8 /* UIDevice+Extension.swift */; };
 		947ADE6C21BE6E0D001B2CFC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947ADE6B21BE6E0D001B2CFC /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000D7D5E2343C6300016E3E8 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		942C51D721C0B3F400AADA9A /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9460F76D232F41210054A3C8 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		947ADE6821BE6E0D001B2CFC /* Extension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Extension.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 				94F3F90F23331B660053B8F1 /* Array+Extension.swift */,
 				94F3F91123331BEA0053B8F1 /* UIWebView+Extension.swift */,
 				94F3F91323331C4B0053B8F1 /* WKWebview+Extension.swift */,
+				000D7D5E2343C6300016E3E8 /* Int+Extension.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 				947F120A21BF93DA00266C92 /* Data+Extension.swift in Sources */,
 				947ADE8921BE6F8D001B2CFC /* UIViewController+Extension.swift in Sources */,
 				947ADE6E21BE6E0D001B2CFC /* ViewController.swift in Sources */,
+				000D7D5F2343C6300016E3E8 /* Int+Extension.swift in Sources */,
 				94F3F91423331C4B0053B8F1 /* WKWebview+Extension.swift in Sources */,
 				94F3F91023331B660053B8F1 /* Array+Extension.swift in Sources */,
 				947ADE8C21BE6F8D001B2CFC /* UITableView+Extension.swift in Sources */,
