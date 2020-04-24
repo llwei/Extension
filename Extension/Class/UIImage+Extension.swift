@@ -240,19 +240,6 @@ extension UIImage {
                        alpha: alpha)
     }
     
-    
-    /// 压缩图片至指定尺寸
-    func compressImage(to size: CGSize) -> UIImage? {
-        let rect = CGRect(origin: CGPoint.zero, size: size)
-        
-        UIGraphicsBeginImageContext(rect.size)
-        draw(in: rect)
-        let compressImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return compressImage
-    }
-    
     /// 修复图片方向错误问题
     func fixOrientation() -> UIImage {
         
@@ -315,4 +302,97 @@ extension UIImage {
         
         return UIImage(cgImage: ctx.makeImage()!)
     }
+}
+
+
+extension UIImage {
+    
+    enum Resolution {
+        case low
+        case mid
+        case high
+        var maxLenght: CGFloat {
+            switch self {
+            case .low: return 320
+            case .mid: return 480
+            case .high: return 640
+            }
+        }
+    }
+    
+    /// 压缩图片至指定大小
+    func compressToData(_ maxByte: Int, resolution: Resolution = .low) -> Data {
+        var maxLength: CGFloat = min(max(self.size.width, self.size.height), resolution.maxLenght)
+        let image = self.scale(maxLength)
+        
+        var compressionQuality: CGFloat = 1
+        var resData = Data()
+        var tempImage = image
+        var allBytes = 0
+        // 压图片质量
+        repeat{
+            resData = tempImage.jpegData(compressionQuality: compressionQuality) ?? Data()
+            tempImage = UIImage(data: resData) ?? UIImage()
+            allBytes = resData.count
+            print("图片大小  = \(allBytes)")
+            
+            if compressionQuality < 0.2 {
+                break
+            } else {
+                compressionQuality -= 0.1
+            }
+        } while allBytes > maxByte
+        
+        if allBytes < maxByte {
+            return resData
+        }
+        // 缩小图片
+        repeat{
+            if maxLength < 10 {
+                break
+            }else{
+                maxLength = maxLength * 0.9
+            }
+            tempImage = tempImage.scale(maxLength)
+            resData = tempImage.jpegData(compressionQuality: compressionQuality) ?? Data()
+            allBytes = resData.count
+            print("图片大小  = \(allBytes)")
+        } while allBytes > maxByte
+        
+        return resData
+    }
+    
+    func scale(_ maxLength: CGFloat) -> UIImage {
+        var newWidth: CGFloat = 0.0
+        var newHeight: CGFloat = 0.0
+        let width = self.size.width
+        let height = self.size.height
+        
+        if (width > maxLength || height > maxLength) {
+            if (width > height) {
+                newWidth = maxLength
+                newHeight = newWidth * height / width
+            } else {
+                newHeight = maxLength
+                newWidth = newHeight * width / height
+            }
+        } else {
+            newWidth = width
+            newHeight = height
+        }
+        return self.compressImage(to: CGSize(width: newWidth, height: newHeight)) ?? UIImage()
+    }
+    
+    /// 压缩图片至指定尺寸
+    func compressImage(to size: CGSize) -> UIImage? {
+        let rect = CGRect(origin: CGPoint.zero, size: size)
+        
+        UIGraphicsBeginImageContext(rect.size)
+        draw(in: rect)
+        let compressImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return compressImage
+    }
+    
 }
