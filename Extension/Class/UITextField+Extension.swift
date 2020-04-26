@@ -58,17 +58,17 @@ extension UITextField {
             let _ = tf.position(from: selectedRange.start, offset: 0) {
             return
         }
-        
-        let string = NSString(string: toBeString)
-        if string.length > tf.textMaxLength {
-            let range = string.rangeOfComposedCharacterSequence(at: tf.textMaxLength)
-            if range.length == 1 {
-                tf.text = string.substring(to: tf.textMaxLength)
-            } else {
-                let targetRange = string.rangeOfComposedCharacterSequences(for: NSRange(location: 0, length: tf.textMaxLength))
-                tf.text = string.substring(with: targetRange)
-            }
-        }
+        tf.text = String(toBeString.prefix(textMaxLength))
+//        let string = NSString(string: toBeString)
+//        if string.length > tf.textMaxLength {
+//            let range = string.rangeOfComposedCharacterSequence(at: tf.textMaxLength)
+//            if range.length == 1 {
+//                tf.text = string.substring(to: tf.textMaxLength)
+//            } else {
+//                let targetRange = string.rangeOfComposedCharacterSequences(for: NSRange(location: 0, length: tf.textMaxLength))
+//                tf.text = string.substring(with: targetRange)
+//            }
+//        }
         
     }
     
